@@ -17,6 +17,7 @@ import { ReactiveFormsModule }    from '@angular/forms';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { LayoutModule } from '@progress/kendo-angular-layout';
+import { PlannerComponent } from './planner/planner.component';
 
 
 
@@ -27,7 +28,8 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
     NavigComponent,
     LoginComponent,
     KendoDemoComponent,
-    ProductGridComponent
+    ProductGridComponent,
+    PlannerComponent
   ],
   imports: [
     routing,

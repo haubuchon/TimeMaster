@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+@import "node_modules/@progress/kendo-theme-bootstrap/scss/all";
+
+
+.full-width-input {
+  width: 100%;
+}
+
+.mg-top-15 {
+  margin-top: 15px;
+}
+
+.invalid-field {
+    color: #D42434;
+    margin-top: -15px;
+    font-size: .7em;
+}
+
+.mg-bottom-15 {
+  margin-bottom: 15px;
+}
+
+.pull-right {
+  float: right;
+}
+
+.ValidationErrorLabel {
+  width: 100%;
+  background: #D42434;
+  color: white;
+  padding: 15px;
+  border-radius: 3px;
+}

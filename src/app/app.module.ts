@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { routing }        from './app.routing';
 import { HomeComponent } from './home';
@@ -18,6 +19,7 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { PlannerComponent } from './planner/planner.component';
+import { AxoTestComponent } from './axo-test/axo-test.component';
 
 
 
@@ -29,7 +31,8 @@ import { PlannerComponent } from './planner/planner.component';
     LoginComponent,
     KendoDemoComponent,
     ProductGridComponent,
-    PlannerComponent
+    PlannerComponent,
+    AxoTestComponent
   ],
   imports: [
     routing,
@@ -38,6 +41,7 @@ import { PlannerComponent } from './planner/planner.component';
     HttpClientModule,
     ButtonsModule,
     BrowserAnimationsModule,
+    FormsModule,
     DateInputsModule,
     GridModule,
     InputsModule,

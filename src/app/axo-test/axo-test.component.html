@@ -1,0 +1,12 @@
+<div class="k-block">
+  <input kendoTextBox [(ngModel)]="username" class="col-5" id="username" placeholder="User" />
+  <div class="w-100"></div>
+  <input kendoTextBox type="password" [(ngModel)]="password" class="col-5" id="pw" placeholder="Password" />
+  <div class="w-100"></div>
+  <button kendoButton (click)="login()">Login</button>
+  <div class="w-100"></div>
+  <div class="col-6">Token: {{token}}</div>
+  <div class="col-6">First name: {{firstName}}</div>
+  <div class="col-6">Last name: {{lastName}}</div>
+  <div class="col-6">Email: {{email}}</div>
+</div>

@@ -11,7 +11,6 @@ export class AuthenticationService {
     constructor(private http: HttpClient,private messageService: MessageService) { }
 
     login(username: string, password: string) {
-        // return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
         return this.http.get<Users>(API_URL + '/' + username)
             .pipe(map(user => {
                 // login successful if there's a user in the response
@@ -19,7 +18,6 @@ export class AuthenticationService {
                     // store user details and basic auth credentials in local storage 
                     // to keep user logged in between page refreshes
                     if (user.users[0].password = window.btoa(password)) {
-                        //user.authdata = window.btoa(username + ':' + password);
                         localStorage.setItem('currentUser', JSON.stringify(user.users));
                     }
 

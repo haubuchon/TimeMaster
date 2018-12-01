@@ -1,12 +1,20 @@
-<div class="k-block">
-  <input kendoTextBox [(ngModel)]="username" class="col-5" id="username" placeholder="User" />
-  <div class="w-100"></div>
-  <input kendoTextBox type="password" [(ngModel)]="password" class="col-5" id="pw" placeholder="Password" />
-  <div class="w-100"></div>
-  <button kendoButton (click)="login()">Login</button>
-  <div class="w-100"></div>
-  <div class="col-6">Token: {{token}}</div>
-  <div class="col-6">First name: {{firstName}}</div>
-  <div class="col-6">Last name: {{lastName}}</div>
-  <div class="col-6">Email: {{email}}</div>
+<div class="card">
+  <div class="card-block">
+    <div class="k-form">
+      <label class="k-form-field">
+        <span>User</span>
+        <input kendoTextBox [(ngModel)]="username" class="col-5" id="username" />
+      </label>
+      <label class="k-form-field">
+        <span>Password</span>
+        <input kendoTextBox type="password" [(ngModel)]="password" class="col-5" id="pw" />
+      </label>
+      <button kendoButton (click)="login()">Login</button>
+      <div *ngIf="loginFailed" class="k-error-colored col-6">Usager ou mot de passe invalide</div>
+      <div class="col-6">Token: {{token}}</div>
+      <div class="col-6">First name: {{firstName}}</div>
+      <div class="col-6">Last name: {{lastName}}</div>
+      <div class="col-6">Email: {{email}}</div>
+    </div>
+  </div>
 </div>

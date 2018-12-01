@@ -7,6 +7,8 @@ import { KendoDemoComponent } from './kendo-demo/kendo-demo.component';
 import { ProductGridComponent } from './product-grid/product-grid.component';
 import { PlannerComponent } from './planner/planner.component';
 import { AxoTestComponent } from './axo-test/axo-test.component';
+import { UsersComponent } from './users/users.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -15,6 +17,8 @@ const appRoutes: Routes = [
     { path: 'grid', component: ProductGridComponent, canActivate: [AuthGuard] },
     { path: 'planner', component: PlannerComponent, canActivate: [AuthGuard] },
     { path: 'axo', component: AxoTestComponent, canActivate: [AuthGuard] },
+    { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+    { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
 
 
     // otherwise redirect to home

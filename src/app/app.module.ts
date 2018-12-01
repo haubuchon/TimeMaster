@@ -20,6 +20,10 @@ import { LabelModule } from '@progress/kendo-angular-label';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { PlannerComponent } from './planner/planner.component';
 import { AxoTestComponent } from './axo-test/axo-test.component';
+import { UsersComponent } from './users/users.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { TreeViewModule } from '@progress/kendo-angular-treeview';
+
 
 
 
@@ -32,7 +36,9 @@ import { AxoTestComponent } from './axo-test/axo-test.component';
     KendoDemoComponent,
     ProductGridComponent,
     PlannerComponent,
-    AxoTestComponent
+    AxoTestComponent,
+    UsersComponent,
+    ProjectsComponent
   ],
   imports: [
     routing,
@@ -46,7 +52,8 @@ import { AxoTestComponent } from './axo-test/axo-test.component';
     GridModule,
     InputsModule,
     LabelModule,
-    LayoutModule
+    LayoutModule,
+    TreeViewModule
   ],
   providers: [ ],
   bootstrap: [AppComponent]

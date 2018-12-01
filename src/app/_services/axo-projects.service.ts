@@ -15,7 +15,8 @@ export class AxoProjectService {
 
   constructor(private http: HttpClient) { }
 
-  getProjects(token: String): Observable<Project> {
+  getProjects(): Observable<Project> {
+    var token = JSON.parse(localStorage.getItem('currentUser')).access_token;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

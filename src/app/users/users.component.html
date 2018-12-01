@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-block">
+    <div class="k-form">
+      <label class="k-form-field">
+        <span>User ID</span>
+        <input kendoTextBox [(ngModel)]="user.userID" class="col-7" />
+      </label>
+      <button kendoButton (click)="retrieveUser()">Get</button>
+      <label class="k-form-field">
+        <span>User name</span>
+        <input kendoTextBox [(ngModel)]="user.userName" class="col-7"/>
+      </label>
+      <label class="k-form-field">
+        <span>Password</span>
+        <input kendoTextBox [(ngModel)]="user.password" class="col-7"/>
+      </label>
+      <label class="k-form-field">
+        <span>Email</span>
+        <input kendoTextBox [(ngModel)]="user.email" class="col-7"/>
+      </label>
+      <button kendoButton (click)="updateUser()">Save</button>
+    </div>
+  </div>
+</div>

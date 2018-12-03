@@ -1,3 +1,18 @@
-<kendo-treeview [nodes]="projects" [textField]="[ 'name', 'name' ]" kendoTreeViewExpandable
-  kendoTreeViewHierarchyBinding childrenField="children">
-</kendo-treeview>
+<div class="row">
+  <div class="col-4 card">
+    <kendo-treeview
+      [nodes]="projects" 
+      [textField]="[ 'name' ]" 
+      kendoTreeViewExpandable 
+      kendoTreeViewHierarchyBinding
+      childrenField="children" 
+      kendoTreeViewSelectable  
+      [selectBy]="'id'" 
+      [(selectedKeys)]="selected"  
+      (selectionChange)="onSelectProject($event)">
+    </kendo-treeview>
+  </div>
+  <div class="col-8 card">
+      <app-project-dtl></app-project-dtl>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AxoProjectService } from '../_services/axo-projects.service';
-import { Data, Project } from '../_models/project';
-import { of } from 'rxjs/observable/of';
+import { Project, Data } from '../_models/project';
 
 @Component({
   selector: 'app-projects',
@@ -13,13 +12,19 @@ export class ProjectsComponent implements OnInit {
 
   constructor(public projectService: AxoProjectService) { }
 
-  public projects: any[];
+  public projects: Data[];
+  public selected: String = '';
 
   ngOnInit() {
     this.projectService.getProjects().subscribe(
-      resp => {this.projects = resp.data},
+      resp => {var r: Project = <Project> resp ;
+              this.projects = r.data;},
       err => {console.log(err)}
     );
+  }
+
+  onSelectProject({ dataItem }: any): void {
+    this.projectService.sendProjectDetail(dataItem.id);
   }
 
 }

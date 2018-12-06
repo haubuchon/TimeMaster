@@ -14,7 +14,6 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { ProductGridComponent } from './product-grid/product-grid.component';
 import { GridModule } from '@progress/kendo-angular-grid';
-import {NgBusyModule} from 'ng-busy';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
@@ -26,6 +25,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { TreeViewModule } from '@progress/kendo-angular-treeview';
 import { ProjectDtlComponent } from './project-dtl/project-dtl.component';
 import { AxoProjectService } from './_services/axo-projects.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,7 @@ import { AxoProjectService } from './_services/axo-projects.service';
     LabelModule,
     LayoutModule,
     TreeViewModule,
-    NgBusyModule
+    NgxSpinnerModule
   ],
   providers: [ AxoProjectService ],
   bootstrap: [AppComponent]

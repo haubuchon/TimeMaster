@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChange } from '@angular/core';
 import { ProjectDtl, Data } from '../_models/project-dtl';
 import { AxoProjectService } from '../_services/axo-projects.service';
-import { Subscription } from 'rxjs';
+import { IntlService } from '@progress/kendo-angular-intl';
 
 @Component({
   selector: 'app-project-dtl',
@@ -11,17 +11,21 @@ import { Subscription } from 'rxjs';
 
 export class ProjectDtlComponent implements OnInit {
 
-  busy: Subscription;
+  public pd: Data = <Data>{};
 
-  public pd: Data;
-
-  constructor(public projectService: AxoProjectService) { }
+  constructor(public projectService: AxoProjectService, public intl: IntlService) { }
 
   ngOnInit() {
     this.projectService.getProjectDetails().subscribe(
       resp => {
         var r: ProjectDtl = <ProjectDtl>resp;
-        if (r) this.pd = r.data;
+        if (r) {
+          this.pd.id = r.data.id;
+          this.pd.name = r.data.name;
+          this.pd.description = r.data.description;
+          this.pd.start_date = this.intl.formatDate(new Date(r.data.start_date),"yyyy/MM/dd");
+          this.pd.due_date = this.intl.formatDate(new Date(r.data.due_date),"yyyy/MM/dd");
+        }
       },
       err => { console.log(err) }
     )

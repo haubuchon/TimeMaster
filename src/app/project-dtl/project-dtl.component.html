@@ -1,4 +1,22 @@
-<div [ngBusy]="busy"></div>
-<p>
-  Project: {{pd?.name}}
-</p>
+<div class="k-form">
+  <label class="k-form-field">
+    <span>ID</span>
+    <input kendoTextBox [(ngModel)]="pd.id" class="col-5" />
+  </label>
+  <label class="k-form-field">
+    <span>Name</span>
+    <input kendoTextBox  [(ngModel)]="pd.name" class="col-5" />
+  </label>
+  <label class="k-form-field">
+    <span>Description</span>
+    <input kendoTextBox  [(ngModel)]="pd.description" class="col-5" />
+  </label>
+  <label class="k-form-field">
+    <span>Start Date</span>
+    <input kendoTextBox [(ngModel)]="pd.start_date"  class="col-5" />
+  </label>
+  <label class="k-form-field">
+    <span>Due Date</span>
+    <input kendoTextBox  [(ngModel)]="pd.due_date" class="col-5" />
+  </label>
+</div>

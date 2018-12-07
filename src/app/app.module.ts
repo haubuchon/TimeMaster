@@ -57,7 +57,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     TreeViewModule,
     NgxSpinnerModule
   ],
-  providers: [ AxoProjectService ],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

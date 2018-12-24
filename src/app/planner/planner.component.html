@@ -1,3 +1,23 @@
-<p>
-  planner works!
-</p>
+<div id="app">
+  <scheduler
+    #scheduler
+    [autoHeight]=false
+    [group]="group"
+    [viewPreset]="viewPreset"
+    [rowHeight]=60
+    [barMargin]="barMargin"
+    [events]="events"
+    [resources]="resources"
+    [timeRanges]="timeRanges"
+    [startDate]="startDate"
+    [endDate]="endDate"
+    [columns]="columns"
+    eventColor="green"
+    eventStyle="border"
+    [eventRenderer]="eventRenderer"
+    [eventEdit]="eventEdit"
+    (onSchedulerEvents)="onSchedulerEvents($event)"
+  ></scheduler>
+
+</div>
+

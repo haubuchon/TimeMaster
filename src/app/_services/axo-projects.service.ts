@@ -3,8 +3,9 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators'
 import { ProjectDtl } from '../_models/project-dtl';
+import { AxoUsers, Datum } from '../_models/axo-users';
 
-const API_URL = 'https://axosoft.concerti.com/api/v6/projects';
+const API_URL = 'https://axosoft.concerti.com/api/v6';
 const CID = '88730934-9f17-45b5-8dae-d6cb854d3d9f';
 const CS = 'KFvTJ0JLfBUXeyMjieZFKP8xTB6c1gdjQkx344hBbEnCTVdnQwmA6VxvcZlo9vasQxUE8dESvWaUukASiqxUVSMth54XOz0b5Hhu';
 
@@ -15,20 +16,20 @@ export class AxoProjectService {
 
   currentProject: Subject<ProjectDtl> = new BehaviorSubject<ProjectDtl>(null);
   public pd: any;
+  private httpOptions: object;
 
-  constructor(private http: HttpClient) { }
-
-  getProjects<Project>(): Observable<Project> {
+  constructor(private http: HttpClient) {
     var token = JSON.parse(localStorage.getItem('currentUser')).access_token;
-    const httpOptions = {
+    this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       })
     };
+  }
 
-    return this.http.get<Project>(API_URL, httpOptions).pipe(map(data => data));
-
+  getProjects<Project>(): Observable<Project> {
+    return this.http.get<Project>(API_URL + '/projects', this.httpOptions).pipe(map(data => data));
   }
 
   getProjectDetails(): Observable<ProjectDtl> {
@@ -36,20 +37,13 @@ export class AxoProjectService {
   }
 
   sendProjectDetail<ProjectDtl>(id: String) {
-    var token = JSON.parse(localStorage.getItem('currentUser')).access_token;
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      })
-    };
-
-    this.http.get<ProjectDtl>(API_URL + '/' + id, httpOptions).subscribe(resp => {
-        this.currentProject.next(<any> resp);
+    this.http.get<ProjectDtl>(API_URL + '/projects/' + id, this.httpOptions).subscribe(resp => {
+      this.currentProject.next(<any>resp);
     });
-    
-
   }
 
+  getUsers<Datum>() {
+    var params: String = '?include_inactive=false'
+    return this.http.get<AxoUsers>(API_URL + '/users' + params, this.httpOptions).pipe(map(data => data.data));
+  }
 }

@@ -25,6 +25,7 @@ import { ProjectDtlComponent } from './project-dtl/project-dtl.component';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { NavigComponent } from './navig/navig.component';
+import { SchedulerComponent } from './scheduler/scheduler.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { NavigComponent } from './navig/navig.component';
     AxoTestComponent,
     UsersComponent,
     ProjectsComponent,
-    ProjectDtlComponent
+    ProjectDtlComponent,
+	SchedulerComponent
   ],
   imports: [
     routing,

@@ -4,8 +4,8 @@ import { throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse, } from '@angular/common/http';
 import { Auth } from '../_models/auth';
 import { map, catchError } from 'rxjs/operators'
+import { AppConfig } from './config.service';
 
-const API_URL = 'https://axosoft.concerti.com/api/oauth2/token';
 const CID = '88730934-9f17-45b5-8dae-d6cb854d3d9f';
 const CS = 'KFvTJ0JLfBUXeyMjieZFKP8xTB6c1gdjQkx344hBbEnCTVdnQwmA6VxvcZlo9vasQxUE8dESvWaUukASiqxUVSMth54XOz0b5Hhu';
 
@@ -14,7 +14,11 @@ const CS = 'KFvTJ0JLfBUXeyMjieZFKP8xTB6c1gdjQkx344hBbEnCTVdnQwmA6VxvcZlo9vasQxUE
 })
 export class AxoAuthService {
 
-  constructor(private http: HttpClient) { }
+  private axoURL: string;
+
+  constructor(private http: HttpClient) {
+      this.axoURL = AppConfig.settings.axosoft + "/oauth2/token"
+   }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -47,7 +51,7 @@ export class AxoAuthService {
       })
     };
 
-    return this.http.get<Auth>(API_URL, httpOptions).pipe(
+    return this.http.get<Auth>(this.axoURL, httpOptions).pipe(
       map(data => data),
       catchError(this.handleError)
     );

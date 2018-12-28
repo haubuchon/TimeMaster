@@ -4,13 +4,14 @@ import { throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Users, User } from '../_models/user.model';
 import { map, catchError } from "rxjs/operators"
-
-const API_URL = 'http://localhost:61017/api/Users';
+import { AppConfig } from './config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  private APIURL: String;
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -19,6 +20,7 @@ export class UserService {
   };
 
   constructor(private http: HttpClient) {
+    this.APIURL = AppConfig.settings.crtidata;
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -37,11 +39,11 @@ export class UserService {
   };
 
   getUser(id: string): Observable<User[]> {
-    return this.http.get<Users>(API_URL + "/" + id, this.httpOptions).pipe(map(data => data.users));
+    return this.http.get<Users>(this.APIURL + "/Users/" + id, this.httpOptions).pipe(map(data => data.users));
   }
 
   putUser(user: User): Observable<any> {
-    return (this.http.put<User>(API_URL + "/" + user.userID, user, this.httpOptions).pipe(catchError(this.handleError)))
+    return (this.http.put<User>(this.APIURL + "/Users/" + user.userID, user, this.httpOptions).pipe(catchError(this.handleError)))
   }
 }
 

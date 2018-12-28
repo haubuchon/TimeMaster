@@ -3,15 +3,17 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Products, Product } from '../_models/product.model';
 import { map, catchError } from "rxjs/operators"
-
-const API_URL = 'http://localhost:61017/api/Products';
+import { AppConfig } from './config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
+  private APIURL: String;
+  
   constructor(private http: HttpClient) {
+    this.APIURL = AppConfig.settings.crtidata;
   }
 
    getProducts(): Observable<Product[]> {
@@ -22,7 +24,7 @@ export class ProductsService {
       })
     };
 
-    return this.http.get<Products>(API_URL,httpOptions).pipe(map(data => data.products));
+    return this.http.get<Products>(this.APIURL + "/Products",httpOptions).pipe(map(data => data.products));
     // .catch(this.handleError);
   }
 }

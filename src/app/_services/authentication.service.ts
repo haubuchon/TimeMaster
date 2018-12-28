@@ -3,15 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Users, User } from '../_models/user.model';
 import { MessageService } from '../_services/message.service';
-
-const API_URL = 'http://localhost:61017/api/Users';
+import { AppConfig } from './config.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    constructor(private http: HttpClient,private messageService: MessageService) { }
+
+    private APIURL: string;
+
+    constructor(private http: HttpClient, private messageService: MessageService) {
+        this.APIURL = AppConfig.settings.crtidata + "/v6";
+    }
 
     login(username: string, password: string) {
-        return this.http.get<Users>(API_URL + '/' + username)
+        return this.http.get<Users>(this.APIURL + '/Users/' + username)
             .pipe(map(user => {
                 // login successful if there's a user in the response
                 if (user) {

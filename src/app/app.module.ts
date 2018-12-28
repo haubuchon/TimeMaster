@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { routing }        from './app.routing';
+import { routing } from './app.routing';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
-import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GridModule } from '@progress/kendo-angular-grid';
-import { ReactiveFormsModule }    from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { LayoutModule } from '@progress/kendo-angular-layout';
@@ -27,6 +27,13 @@ import { LoginComponent } from './login';
 import { NavigComponent } from './navig/navig.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 
+import { APP_INITIALIZER } from '@angular/core';
+import { AppConfig } from './_services/config.service';
+
+export function initializeApp(appConfig: AppConfig) {
+  return () => appConfig.load();
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,8 +47,8 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
     UsersComponent,
     ProjectsComponent,
     ProjectDtlComponent,
-	  SchedulerComponent
-	],
+    SchedulerComponent
+  ],
   imports: [
     routing,
     BrowserModule,
@@ -58,7 +65,12 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
     TreeViewModule,
     NgxSpinnerModule
   ],
-  providers: [ ],
+  providers: [AppConfig,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [AppConfig], multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

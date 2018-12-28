@@ -2,7 +2,7 @@
 
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
-import { AuthGuard } from './_guards';
+import { AuthGuard, AdminGuard } from './_guards';
 import { KendoDemoComponent } from './kendo-demo/kendo-demo.component';
 import { ProductGridComponent } from './product-grid/product-grid.component';
 import { PlannerComponent } from './planner/planner.component';
@@ -17,7 +17,7 @@ const appRoutes: Routes = [
     { path: 'grid', component: ProductGridComponent, canActivate: [AuthGuard] },
     { path: 'planner', component: PlannerComponent, canActivate: [AuthGuard] },
     { path: 'axo', component: AxoTestComponent, canActivate: [AuthGuard] },
-    { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+    { path: 'users', component: UsersComponent, canActivate: [AuthGuard,AdminGuard] },
     { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
 
 

@@ -1,9 +1,9 @@
 ﻿<h1>Home</h1>
-<p>You're logged in with Angular 6 & Basic HTTP Authentication!!</p>
+<p>Vous êtes autentifié !</p>
 <div>
-    Users from secure api end point:
+    Voici les détails de votre usager:
     <ul>
-        <li *ngFor="let user of users">{{user.userID}} {{user.userName}}</li>
+        <li *ngFor="let user of users">{{user.userID}} {{user.userName}} {{user.isAdmin}}</li>
     </ul>
 </div>
 <p><a [routerLink]="['/login']">Logout</a></p>

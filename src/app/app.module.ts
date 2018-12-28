@@ -40,8 +40,8 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
     UsersComponent,
     ProjectsComponent,
     ProjectDtlComponent,
-	SchedulerComponent
-  ],
+	  SchedulerComponent
+	],
   imports: [
     routing,
     BrowserModule,

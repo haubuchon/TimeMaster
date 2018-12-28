@@ -3,7 +3,7 @@ export interface SecurityRole {
     id: number;
 }
 
-export interface Datum {
+export interface User {
     id: number;
     first_name: string;
     last_name: string;
@@ -23,5 +23,5 @@ export interface Datum {
 }
 
 export interface AxoUsers {
-    data: Datum[];
+    data: User[];
 }

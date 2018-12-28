@@ -3,8 +3,10 @@
 </p>
 
 <kendo-panelbar>
-  <kendo-panelbar-item *ngFor="let item of items" 
+<!-- <kendo-panelbar *ngIf="loggedIn"> -->
+    <kendo-panelbar-item *ngFor="let item of items" 
     [title]="item.desc"
-    [routerLink]="item.link">
+    [routerLink]="item.link"
+    [disabled]="!item.active">
   </kendo-panelbar-item>
 </kendo-panelbar>

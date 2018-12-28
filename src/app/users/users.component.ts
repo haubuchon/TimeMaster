@@ -18,7 +18,8 @@ export class UsersComponent implements OnInit {
       'userID': 'haubuchon',
       'userName': '',
       'password': '',
-      'email': ''
+      'email': '',
+      'isAdmin': 1
     });
   }
 

@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { NgModel } from '@angular/forms';
 import { SchedulerComponent } from '../scheduler/scheduler.component';
-import { HttpClient } from '@angular/common/http';
 import { AxoProjectService } from '../_services/axo-projects.service';
+import * as moment from 'moment';
 
 declare var window: any;
 
@@ -22,8 +21,8 @@ export class PlannerComponent implements OnInit, AfterViewInit {
   resources = [];
   timeRanges = true;
   barMargin = 10;
-  startDate = new Date(2018, 1, 1, 8);
-  endDate = new Date(2018, 3, 31, 18);
+  startDate = new Date(2018, 8, 1, 8);
+  endDate = new Date(2019, 3, 31, 18);
   viewPreset = 'weekAndDay';
   group = 'role'
 
@@ -53,9 +52,7 @@ export class PlannerComponent implements OnInit, AfterViewInit {
       `;
   };
 
-  constructor(private http: HttpClient, private axoservice: AxoProjectService) {
-    this.getData();
-  }
+  constructor(private axoservice: AxoProjectService) { }
 
   ngOnInit() {
     this.axoservice.getUsers().subscribe(data => this.resources = data.map(
@@ -64,7 +61,19 @@ export class PlannerComponent implements OnInit, AfterViewInit {
         id: item.id,
         role: item.security_roles[0].name
       })
-    ))
+    ));
+
+    this.axoservice.getFeatures().subscribe(data => this.events = data.map(
+      item => ({
+        id: item.id,
+        resourceId: item.assigned_to.id,
+        name: item.name,
+        desc: item.description.replace(/<\/?[^>]+(>|$)/g, ""),
+        startDate: item.start_date,
+        endDate: moment(item.start_date).add(item.estimated_duration.duration_minutes,'minutes').toDate()
+        
+      })
+    ));
   }
 
   ngAfterViewInit() {
@@ -83,17 +92,6 @@ export class PlannerComponent implements OnInit, AfterViewInit {
     // 3. Change the color of the first event
     // this.scheduler.schedulerEngine.eventStore.first.eventColor = 'orange';
     //
-  }
-
-  // fetch data for the scheduler
-  getData() {
-    const me = this;
-
-    me.http.get('../assets/data/data.json').subscribe(data => {
-      //me.resources = data['resources'].rows;
-      me.events = data['events'].rows;
-      me.timeRanges = data['timeRanges'].rows;
-    });
   }
 
   onSchedulerEvents(event: any) {
@@ -121,5 +119,9 @@ export class PlannerComponent implements OnInit, AfterViewInit {
   // remove event button click handled here
   onRemoveEventClick() {
     this.scheduler.removeEvent();
+  }
+
+  onClick() {
+    console.log(this.events);
   }
 }

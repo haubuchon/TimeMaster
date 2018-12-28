@@ -26,7 +26,7 @@ export class AxoTestComponent implements OnInit {
         this.lastName = data.data.last_name;
         this.email = data.data.email;
         this.loginFailed = false;
-        localStorage.setItem('currentUser', JSON.stringify(data));
+        localStorage.setItem('axoUser', JSON.stringify(data));
       },
       err => {
         this.loginFailed = true;
